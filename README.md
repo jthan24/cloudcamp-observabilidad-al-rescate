@@ -9,10 +9,11 @@ https://jgilc12023o11y.grafana.net/a/grafana-k8s-app/configuration/cluster-confi
 
 THIS_IS_A_TOKEN_FROM_GRAFANA
 
-
+```bash
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 helm upgrade --install --atomic --timeout 300s grafana-k8s-monitoring grafana/k8s-monitoring --namespace o11y --create-namespace -f values.yaml
+```
 
 ```yaml
 cluster:
