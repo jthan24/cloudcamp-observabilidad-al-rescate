@@ -1,0 +1,72 @@
+# values.yaml - demo settings for local Minikube/Kind
+{
+  "global": {
+    "namespaceOverride": "observabilidad"
+  },
+  "grafana": {
+    "enabled": true,
+    "adminUser": "admin",
+    "adminPassword": "admin",
+    "service": {
+      "type": "NodePort"
+    },
+    "persistence": {
+      "enabled": false
+    },
+    "sidecar": {
+      "dashboards": {
+        "enabled": true,
+        "label": "grafana_dashboard",
+        "folder": "/var/lib/grafana/dashboards"
+      }
+    },
+    "datasources": {
+      "enabled": true,
+      "datasources": {
+        "prometheus": {
+          "type": "prometheus",
+          "url": "http://mimir:80",
+          "access": "proxy",
+          "isDefault": true
+        },
+        "loki": {
+          "type": "loki",
+          "url": "http://loki:3100",
+          "access": "proxy"
+        },
+        "tempo": {
+          "type": "tempo",
+          "url": "http://tempo:3200",
+          "access": "proxy"
+        }
+      }
+    }
+  },
+  "loki": {
+    "enabled": true,
+    "persistence": {
+      "enabled": false
+    },
+    "service": {
+      "type": "NodePort"
+    }
+  },
+  "tempo": {
+    "enabled": true,
+    "service": {
+      "type": "NodePort"
+    },
+    "persistence": {
+      "enabled": false
+    }
+  },
+  "mimir": {
+    "enabled": true,
+    "service": {
+      "type": "NodePort"
+    },
+    "persistence": {
+      "enabled": false
+    }
+  }
+}
